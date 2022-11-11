@@ -1,0 +1,180 @@
+Execution stack: 
+(int v;(v=2;print(v)))
+Symbol table: 
+Output list: 
+
+Execution stack: 
+int v
+(v=2;print(v))
+Symbol table: 
+Output list: 
+
+Execution stack: 
+(v=2;print(v))
+Symbol table: 
+v -> 0
+Output list: 
+
+Execution stack: 
+v=2
+print(v)
+Symbol table: 
+v -> 0
+Output list: 
+
+Execution stack: 
+print(v)
+Symbol table: 
+v -> 2
+Output list: 
+
+Execution stack: 
+Symbol table: 
+v -> 2
+Output list: 
+2
+
+Execution stack: 
+(int a;(int b;(a=2 + 3 * 5;(b=a + 1;print(b)))))
+Symbol table: 
+Output list: 
+
+Execution stack: 
+int a
+(int b;(a=2 + 3 * 5;(b=a + 1;print(b))))
+Symbol table: 
+Output list: 
+
+Execution stack: 
+(int b;(a=2 + 3 * 5;(b=a + 1;print(b))))
+Symbol table: 
+a -> 0
+Output list: 
+
+Execution stack: 
+int b
+(a=2 + 3 * 5;(b=a + 1;print(b)))
+Symbol table: 
+a -> 0
+Output list: 
+
+Execution stack: 
+(a=2 + 3 * 5;(b=a + 1;print(b)))
+Symbol table: 
+a -> 0
+b -> 0
+Output list: 
+
+Execution stack: 
+a=2 + 3 * 5
+(b=a + 1;print(b))
+Symbol table: 
+a -> 0
+b -> 0
+Output list: 
+
+Execution stack: 
+(b=a + 1;print(b))
+Symbol table: 
+a -> 17
+b -> 0
+Output list: 
+
+Execution stack: 
+b=a + 1
+print(b)
+Symbol table: 
+a -> 17
+b -> 0
+Output list: 
+
+Execution stack: 
+print(b)
+Symbol table: 
+a -> 17
+b -> 18
+Output list: 
+
+Execution stack: 
+Symbol table: 
+a -> 17
+b -> 18
+Output list: 
+18
+
+Execution stack: 
+(boolean a;(int v;(a=true;((IF(a) THEN (v=2) ELSE (v=3));print(v)))))
+Symbol table: 
+Output list: 
+
+Execution stack: 
+boolean a
+(int v;(a=true;((IF(a) THEN (v=2) ELSE (v=3));print(v))))
+Symbol table: 
+Output list: 
+
+Execution stack: 
+(int v;(a=true;((IF(a) THEN (v=2) ELSE (v=3));print(v))))
+Symbol table: 
+a -> false
+Output list: 
+
+Execution stack: 
+int v
+(a=true;((IF(a) THEN (v=2) ELSE (v=3));print(v)))
+Symbol table: 
+a -> false
+Output list: 
+
+Execution stack: 
+(a=true;((IF(a) THEN (v=2) ELSE (v=3));print(v)))
+Symbol table: 
+a -> false
+v -> 0
+Output list: 
+
+Execution stack: 
+a=true
+((IF(a) THEN (v=2) ELSE (v=3));print(v))
+Symbol table: 
+a -> false
+v -> 0
+Output list: 
+
+Execution stack: 
+((IF(a) THEN (v=2) ELSE (v=3));print(v))
+Symbol table: 
+a -> true
+v -> 0
+Output list: 
+
+Execution stack: 
+(IF(a) THEN (v=2) ELSE (v=3))
+print(v)
+Symbol table: 
+a -> true
+v -> 0
+Output list: 
+
+Execution stack: 
+v=2
+print(v)
+Symbol table: 
+a -> true
+v -> 0
+Output list: 
+
+Execution stack: 
+print(v)
+Symbol table: 
+a -> true
+v -> 2
+Output list: 
+
+Execution stack: 
+Symbol table: 
+a -> true
+v -> 2
+Output list: 
+2
+
