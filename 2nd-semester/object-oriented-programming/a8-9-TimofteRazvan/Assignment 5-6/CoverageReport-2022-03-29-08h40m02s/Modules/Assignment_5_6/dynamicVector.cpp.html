@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>dynamicVector.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+#include "DynamicVector.h"
+#include &lt;assert.h&gt;
+
+DynamicVector::DynamicVector(int capacity)
+<span style = "background-color:#dfd">{
+	this-&gt;size = 0;
+	this-&gt;capacity = capacity;
+	this-&gt;elems = new TElement[capacity];
+}</span>
+
+DynamicVector::DynamicVector(const DynamicVector&amp; v)
+<span style = "background-color:#dfd">{
+	this-&gt;size = v.size;
+	this-&gt;capacity = v.capacity;
+	this-&gt;elems = new TElement[this-&gt;capacity];
+	for (int i = 0; i &lt; this-&gt;size; i++)</span>
+<span style = "background-color:#fdd">		this-&gt;elems[i] = v.elems[i];</span>
+<span style = "background-color:#dfd">}</span>
+
+DynamicVector::~DynamicVector()
+<span style = "background-color:#dfd">{
+	delete[] this-&gt;elems;
+}</span>
+
+DynamicVector&amp; DynamicVector::operator=(const DynamicVector&amp; v)
+<span style = "background-color:#dfd">{
+	if (this == &amp;v)</span>
+<span style = "background-color:#fdd">		return *this;</span>
+
+<span style = "background-color:#dfd">	this-&gt;size = v.size;
+	this-&gt;capacity = v.capacity;</span>
+
+<span style = "background-color:#dfd">	delete[] this-&gt;elems;
+	this-&gt;elems = new TElement[this-&gt;capacity];
+	for (int i = 0; i &lt; this-&gt;size; i++)
+		this-&gt;elems[i] = v.elems[i];</span>
+
+<span style = "background-color:#dfd">	return *this;
+}</span>
+
+void DynamicVector::operator+(const TElement&amp; e)
+<span style = "background-color:#dfd">{
+	if (this-&gt;size == this-&gt;capacity)
+		this-&gt;resize();
+	this-&gt;elems[this-&gt;size] = e;
+	this-&gt;size++;
+}</span>
+
+void operator+(const TElement&amp; e, DynamicVector&amp; v)
+<span style = "background-color:#dfd">{
+	v + e;
+}</span>
+
+void DynamicVector::add(const TElement&amp; e)
+<span style = "background-color:#dfd">{
+	if (this-&gt;size == this-&gt;capacity)
+		this-&gt;resize();
+	this-&gt;elems[this-&gt;size] = e;
+	this-&gt;size++;
+}</span>
+
+void DynamicVector::del(int i)
+<span style = "background-color:#dfd">{
+	for (int j = i; j &lt; this-&gt;size - 1; j++)</span>
+	{
+<span style = "background-color:#dfd">		this-&gt;elems[j] = this-&gt;elems[j + 1];
+	}
+	this-&gt;size--;
+}</span>
+
+void DynamicVector::resize(double factor)
+<span style = "background-color:#dfd">{
+	this-&gt;capacity *= static_cast&lt;int&gt;(factor);</span>
+
+<span style = "background-color:#dfd">	TElement* els = new TElement[this-&gt;capacity];
+	for (int i = 0; i &lt; this-&gt;size; i++)
+		els[i] = this-&gt;elems[i];</span>
+
+<span style = "background-color:#dfd">	delete[] this-&gt;elems;
+	this-&gt;elems = els;
+}</span>
+
+TElement* DynamicVector::getAllElems() const
+<span style = "background-color:#dfd">{
+	return this-&gt;elems;
+}</span>
+
+int DynamicVector::getSize() const
+<span style = "background-color:#dfd">{
+	return this-&gt;size;
+}</span>
+
+void DynamicVector::testDynamicVector()
+<span style = "background-color:#dfd">{
+	DynamicVector dynamic;
+	assert(dynamic.getSize() == 0);
+	string red = "Red", yellow = "Yellow", blue = "Blue", black = "Black";
+	string s = "S", l = "L", x = "X", xl = "XL", xxl = "XXL";
+	Coat coat1(xxl, red, 250, 30, "Link_1");
+	Coat coat2(xxl, yellow, 250, 30, "Link_2");
+	Coat coat3(xxl, blue, 250, 30, "Link_3");
+	Coat coat4(xxl, black, 250, 30, "Link_4");
+	Coat coat5(xl, blue, 350, 30, "Link_5");
+	Coat coat6(xl, red, 350, 30, "Link_6");
+	Coat coat7(xl, yellow, 350, 30, "Link_7");
+	Coat coat8(l, red, 300, 30, "Link_8");
+	Coat coat9(l, black, 300, 30, "Link_9");
+	Coat coat10(s, yellow, 300, 30, "Link_10");
+	dynamic.add(coat1);
+	dynamic.add(coat2);
+	dynamic.add(coat3);
+	dynamic.add(coat4);
+	dynamic.add(coat5);
+	dynamic + coat6;
+	dynamic.add(coat7);
+	coat8 + dynamic;
+	dynamic.add(coat9);
+	dynamic.add(coat10);</span>
+
+<span style = "background-color:#dfd">	assert(dynamic.getSize() == 10);
+	Coat* all = dynamic.getAllElems();
+	assert(all[0].getColour() == red);
+	assert(all[5].getPhotograph() == "Link_6");
+	dynamic.del(5);
+	assert(all[5].getPhotograph() == "Link_7");
+	assert(dynamic.getSize() == 9);</span>
+
+<span style = "background-color:#dfd">	DynamicVector copy;
+	copy = dynamic;
+	assert(copy.getSize() == 9);</span>
+
+<span style = "background-color:#dfd">	Coat* allcopy = copy.getAllElems();
+	assert(allcopy[0].getColour() == red);
+	assert(allcopy[5].getPhotograph() == "Link_7");
+	copy.del(5);
+	assert(copy.getSize() == 8);
+	assert(allcopy[5].getPhotograph() == "Link_8");</span>
+
+<span style = "background-color:#dfd">	int old_capacity = dynamic.capacity;
+	dynamic.resize();
+	assert(old_capacity != dynamic.capacity);
+	assert(copy.capacity != dynamic.capacity);</span>
+
+<span style = "background-color:#dfd">}</span></pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

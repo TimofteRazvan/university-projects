@@ -1,0 +1,314 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+        <meta charset="utf-8"/>
+	    <title>ui.cpp</title>
+	    <link href="../../third-party/google-code-prettify/prettify-CppCoverage.css" type="text/css" rel="stylesheet" />
+	    <script type="text/javascript" src="../../third-party/google-code-prettify/prettify.js"></script>
+	</head>
+    <body onload="prettyPrint()">
+        <h4></h4>
+        <pre class="prettyprint lang-cpp linenums">
+#include "ui.h"
+
+UI::UI(Controller controller)
+<span style = "background-color:#dfd">	: ctrl(controller)
+{
+}</span>
+
+void UI::displayAll()
+<span style = "background-color:#fdd">{</span>
+	Coat* all;
+<span style = "background-color:#fdd">	all = ctrl.getAll();</span>
+
+<span style = "background-color:#fdd">	int capacity = ctrl.getSize();</span>
+
+<span style = "background-color:#fdd">	cout &lt;&lt; "Here are all the coats registered in our database:\n";
+	for (int i = 0; i &lt; capacity; i++)</span>
+	{
+<span style = "background-color:#fdd">		string size, colour, photograph;</span>
+		int price, quantity;
+<span style = "background-color:#fdd">		size = all[i].getSize();
+		colour = all[i].getColour();
+		price = all[i].getPrice();
+		quantity = all[i].getQuantity();
+		photograph = all[i].getPhotograph();
+		cout &lt;&lt; size &lt;&lt; " " &lt;&lt; colour &lt;&lt; " " &lt;&lt; price &lt;&lt; " " &lt;&lt; quantity &lt;&lt; " " &lt;&lt; photograph &lt;&lt; "\n";
+	}</span>
+
+<span style = "background-color:#fdd">}</span>
+
+void UI::displayPrivileges()
+<span style = "background-color:#dfd">{
+	cout &lt;&lt; "=================================\n";
+	cout &lt;&lt; "Choose privileges:\n";
+	cout &lt;&lt; "1. Administrator\n";
+	cout &lt;&lt; "2. User\n";
+	cout &lt;&lt; "=================================\n";
+}</span>
+
+void UI::displayAdminMenu()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "=================================\n";
+	cout &lt;&lt; "1. Add a coat\n";
+	cout &lt;&lt; "2. Delete a coat\n";
+	cout &lt;&lt; "3. Update a coat\n";
+	cout &lt;&lt; "4. Display coats in store\n";
+	cout &lt;&lt; "5. Exit\n";
+	cout &lt;&lt; "=================================\n";
+}</span>
+
+void UI::displayUserMenu()
+<span style = "background-color:#fdd">{
+	cout &lt;&lt; "1. Add to cart\n";
+	cout &lt;&lt; "2. Next coat\n";
+	cout &lt;&lt; "3. View cart\n";
+	cout &lt;&lt; "4. Exit\n";
+}</span>
+
+void UI::displaySize()
+<span style = "background-color:#fdd">{
+	string filter_size;
+	int option, capacity = 0, i = 0;
+	cout &lt;&lt; "Size to peruse: ";
+	cin &gt;&gt; filter_size;
+	if (filter_size != "XXL" &amp;&amp; filter_size != "XL" &amp;&amp; filter_size != "L" &amp;&amp; filter_size != "S")</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Invalid size!\n";
+		return;</span>
+	}
+	Coat* filtered;
+<span style = "background-color:#fdd">	ctrl.filterSize(filter_size);
+	filtered = ctrl.getFilter();
+	capacity = ctrl.getFilterSize();
+	while (i &lt; capacity)</span>
+	{
+<span style = "background-color:#fdd">		string size, colour, photograph;</span>
+		int price, quantity, option;
+<span style = "background-color:#fdd">		size = filtered[i].getSize();
+		colour = filtered[i].getColour();
+		price = filtered[i].getPrice();
+		quantity = filtered[i].getQuantity();
+		photograph = filtered[i].getPhotograph();
+		cout &lt;&lt; "&lt;&lt;&lt; CURRENTLY VIEWING &gt;&gt;&gt;\n";
+		cout &lt;&lt; "Size: " &lt;&lt; size &lt;&lt; "\n" &lt;&lt; </span>
+			"Colour: " &lt;&lt; colour &lt;&lt; "\n" &lt;&lt; 
+			"Price: " &lt;&lt; price &lt;&lt; "\n" &lt;&lt; 
+			"Quantity: " &lt;&lt; quantity &lt;&lt; "\n" &lt;&lt; 
+			"Photograph: " &lt;&lt; photograph &lt;&lt; "\n";
+<span style = "background-color:#fdd">		displayUserMenu();
+		cout &lt;&lt; "&gt;&gt;&gt; ";
+		cin &gt;&gt; option;
+		while (cin.fail())</span>
+		{
+<span style = "background-color:#fdd">			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout &lt;&lt; "Option must be an integer.\n";
+		}
+		if (option == 1)
+			ctrl.addToCart(size, colour, price, quantity, photograph);
+		else if (option == 2)
+			i++;
+		else if (option == 3)
+			displayCart();
+		else if (option == 4)
+			return;
+		else if (option &lt;= 0 || option &gt; 4)
+			cout &lt;&lt; "Invalid option!";
+		if (i == capacity - 1)
+			i = 0;
+	}
+}</span>
+
+void UI::displayCart()
+<span style = "background-color:#fdd">{</span>
+	Coat* cart;
+<span style = "background-color:#fdd">	cart = ctrl.getCart();
+	int cart_size = ctrl.getCartSize();
+	cout &lt;&lt; "=================================\n";
+	cout &lt;&lt; "Here are all the coats in your shopping cart:\n";
+	for (int i = 0; i &lt; cart_size; i++)</span>
+	{
+<span style = "background-color:#fdd">		string size, colour, photograph;</span>
+		int price, quantity;
+<span style = "background-color:#fdd">		size = cart[i].getSize();
+		colour = cart[i].getColour();
+		price = cart[i].getPrice();
+		quantity = cart[i].getQuantity();
+		photograph = cart[i].getPhotograph();
+		cout &lt;&lt; size &lt;&lt; " " &lt;&lt; colour &lt;&lt; " " &lt;&lt; price &lt;&lt; " " &lt;&lt; quantity &lt;&lt; " " &lt;&lt; photograph &lt;&lt; "\n";
+	}
+	cout &lt;&lt; "=================================\n";
+}</span>
+
+void UI::addCoat()
+<span style = "background-color:#fdd">{
+	string size, colour, photograph;</span>
+	int price, quantity;
+<span style = "background-color:#fdd">	cout &lt;&lt; "Size: ";
+	cin &gt;&gt; size;
+	if (size != "XXL" &amp;&amp; size != "XL" &amp;&amp; size != "L" &amp;&amp; size != "S")</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Invalid size!\n";
+		return;</span>
+	}
+<span style = "background-color:#fdd">	cout &lt;&lt; "Colour: ";
+	cin &gt;&gt; colour;
+	cout &lt;&lt; "Price: ";
+	cin &gt;&gt; price;
+	while (cin.fail())</span>
+	{
+<span style = "background-color:#fdd">		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout &lt;&lt; "Price must be an integer.\n";
+		return;
+	}
+	if (price &lt; 1)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Price must be higher than 0.\n";
+		return;</span>
+	}
+
+<span style = "background-color:#fdd">	cout &lt;&lt; "Quantity: ";
+	cin &gt;&gt; quantity;
+	while (cin.fail())</span>
+	{
+<span style = "background-color:#fdd">		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout &lt;&lt; "Quantity must be an integer.\n";
+		return;
+	}
+	if (quantity &lt; 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Quantity must be positive.\n";
+		return;</span>
+	}
+<span style = "background-color:#fdd">	cout &lt;&lt; "Photograph: ";
+	cin &gt;&gt; photograph;
+	int value = ctrl.addCoat(size, colour, price, quantity, photograph);
+	if (value)
+		cout &lt;&lt; "Coat already exists.\n";</span>
+	else
+<span style = "background-color:#fdd">		cout &lt;&lt; "Coat successfully added.\n";
+}</span>
+
+void UI::deleteCoat()
+<span style = "background-color:#fdd">{
+	string photo;
+	cout &lt;&lt; "Photograph of the coat to be deleted: ";
+	cin &gt;&gt; photo;
+	int value = ctrl.deleteCoat(photo);
+	if (value)
+		cout &lt;&lt; "Coat doesn't exist.\n";</span>
+	else
+<span style = "background-color:#fdd">		cout &lt;&lt; "Coat successfully deleted.\n";
+}</span>
+
+void UI::updateCoat()
+<span style = "background-color:#fdd">{
+	string photo, _size, _colour, _photo;</span>
+	int _price, _quantity;
+<span style = "background-color:#fdd">	cout &lt;&lt; "Photograph of the coat to be updated: ";
+	cin &gt;&gt; photo;
+	cout &lt;&lt; "New size: ";
+	cin &gt;&gt; _size;
+	if (_size != "XXL" &amp;&amp; _size != "XL" &amp;&amp; _size != "L" &amp;&amp; _size != "S")</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Invalid size!\n";
+		return;</span>
+	}
+<span style = "background-color:#fdd">	cout &lt;&lt; "New colour: ";
+	cin &gt;&gt; _colour;
+	cout &lt;&lt; "New price: ";
+	cin &gt;&gt; _price;
+	while (cin.fail())</span>
+	{
+<span style = "background-color:#fdd">		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout &lt;&lt; "Price must be an integer.\n";
+		return;
+	}
+	if (_price &lt; 1)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Price must be higher than 0.\n";
+		return;</span>
+	}
+
+<span style = "background-color:#fdd">	cout &lt;&lt; "New quantity: ";
+	cin &gt;&gt; _quantity;
+	while (cin.fail())</span>
+	{
+<span style = "background-color:#fdd">		cin.clear();
+		cin.ignore(INT_MAX, '\n');
+		cout &lt;&lt; "Quantity must be an integer.\n";
+		return;
+	}
+	if (_quantity &lt; 0)</span>
+	{
+<span style = "background-color:#fdd">		cout &lt;&lt; "Quantity must be positive.\n";
+		return;</span>
+	}
+
+<span style = "background-color:#fdd">	cout &lt;&lt; "New photo: ";
+	cin &gt;&gt; _photo;
+	int value = ctrl.updateCoat(photo, _size, _colour, _price, _quantity, _photo);
+	if (value)
+		cout &lt;&lt; "Coat doesn't exist.\n";</span>
+	else
+<span style = "background-color:#fdd">		cout &lt;&lt; "Coat successfully updated.\n";
+}</span>
+
+void UI::start()
+<span style = "background-color:#dfd">{
+	ctrl.generateCoats();</span>
+	int privileges;
+<span style = "background-color:#dfd">	displayPrivileges();
+	cout &lt;&lt; "&gt;&gt;&gt; ";
+	cin &gt;&gt; privileges;
+	while (privileges == 1)</span>
+	{
+		int option;
+<span style = "background-color:#fdd">		displayAdminMenu();
+		cout &lt;&lt; "Option: ";
+		cin &gt;&gt; option;
+		while (cin.fail())</span>
+		{
+<span style = "background-color:#fdd">			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout &lt;&lt; "Option must be an integer.\n";
+		}
+		if (option == 1)
+			addCoat();
+		if (option == 2)
+			deleteCoat();
+		if (option == 3)
+			updateCoat();
+		if (option == 4)
+			displayAll();
+		if (option == 5)
+			return;
+		if (option &lt; 1 || option &gt; 5)
+			cout &lt;&lt; "Invalid option.\n";
+	}</span>
+<span style = "background-color:#dfd">	while (privileges == 2)</span>
+		{
+<span style = "background-color:#fdd">			displaySize();
+			return;
+		}</span>
+<span style = "background-color:#dfd">	cout &lt;&lt; "Invalid option.\n";
+}</span></pre>
+        <hr />
+        <table width="100%">
+            <thead>
+                <tr>
+                    <th align="center">
+                        <small>Generated by</small>
+                        <a href="https://github.com/OpenCppCoverage/OpenCppCoverage/releases">
+                            <strong>OpenCppCoverage (Version: 0.9.9.0)</strong>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </body>
+</html>

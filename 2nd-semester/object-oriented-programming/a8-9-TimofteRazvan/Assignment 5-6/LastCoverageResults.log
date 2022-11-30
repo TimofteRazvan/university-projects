@@ -1,0 +1,31 @@
+[2022-03-29 08:40:00] [info] Start Program:
+Path:"Assignment_5_6/x64/Debug/Assignment_5_6.exe"
+Arguments:
+Working directory: not set.
+Modules: Selected: * Excluded: 
+Sources: Selected: Assignment_5_6 Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: html 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+[2022-03-29 08:40:00] [info] Module: C:\Users\Robert\Desktop\OOP\Assignment 5-6\Assignment_5_6\x64\Debug\Assignment_5_6.exe is selected because it matches selected pattern: *
+[2022-03-29 08:40:00] [info] Module: C:\Windows\System32\ntdll.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:00] [info] Module: C:\Windows\System32\kernel32.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:00] [info] Module: C:\Windows\System32\KernelBase.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:00] [info] Module: C:\Windows\System32\vcruntime140d.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:00] [info] Module: C:\Windows\System32\vcruntime140_1d.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:00] [info] Module: C:\Windows\System32\msvcp140d.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:00] [info] Module: C:\Windows\System32\ucrtbased.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:02] [info] Module: C:\Windows\System32\kernel.appcore.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:02] [info] Module: C:\Windows\System32\msvcrt.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:02] [info] Module: C:\Windows\System32\rpcrt4.dll is selected because it matches selected pattern: *
+[2022-03-29 08:40:02] [info] ----------------------------------------------------
+[2022-03-29 08:40:02] [info] Coverage generated in Folder C:\Users\Robert\Desktop\OOP\Assignment 5-6\CoverageReport-2022-03-29-08h40m02s
+[2022-03-29 08:40:02] [info] ----------------------------------------------------
+[2022-03-29 08:40:02] [info] The code coverage report is not what you expect? See the FAQ https://github.com/OpenCppCoverage/OpenCppCoverage/wiki/FAQ.
