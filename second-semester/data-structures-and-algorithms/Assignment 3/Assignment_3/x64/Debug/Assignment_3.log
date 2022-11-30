@@ -1,0 +1,12 @@
+﻿  Assignment_3.cpp
+  ExtendedTest.cpp
+C:\Users\Robert\Desktop\ubb\Data Structures & Algorithms\Assignment 3\Assignment_3\ExtendedTest.cpp(116,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\Desktop\ubb\Data Structures & Algorithms\Assignment 3\Assignment_3\ExtendedTest.cpp(126,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\Desktop\ubb\Data Structures & Algorithms\Assignment 3\Assignment_3\ExtendedTest.cpp(135,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\Desktop\ubb\Data Structures & Algorithms\Assignment 3\Assignment_3\ExtendedTest.cpp(143,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Robert\Desktop\ubb\Data Structures & Algorithms\Assignment 3\Assignment_3\ExtendedTest.cpp(255,21): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  ShortTest.cpp
+  SMIterator.cpp
+  SortedMap.cpp
+  Generating Code...
+  Assignment_3.vcxproj -> C:\Users\Robert\Desktop\ubb\Data Structures & Algorithms\Assignment 3\Assignment_3\x64\Debug\Assignment_3.exe
