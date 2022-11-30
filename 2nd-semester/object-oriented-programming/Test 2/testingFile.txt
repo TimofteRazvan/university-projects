@@ -1,0 +1,4 @@
+Name: Spitalul Copiilor, Nr. Doctors: 20, Nr. Mothers: 10, Nr. Newborns: 11, Grade: 10
+Name: Spitalul Noua Sansa, Nr. Doctors: 50, Nr. Mothers: 70, Nr. Newborns: 80, Grade: 5
+Name: Spitalul Surgical, Nr. Doctors: 20, Nr. Patients: 50
+Name: gwegwet, Nr. Doctors: 10, Nr. Patients: 5
